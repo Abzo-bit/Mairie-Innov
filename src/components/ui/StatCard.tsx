@@ -2,14 +2,14 @@ type Props = {
   title: string;
   value: string;
   trend: string;
-  icon: string;
+  icon: React.ElementType;
 };
 
 export default function StatCard({
   title,
   value,
   trend,
-  icon,
+  icon: Icon,
 }: Props) {
   return (
     <div
@@ -35,25 +35,33 @@ export default function StatCard({
             color: "#64748B",
             fontSize: "14px",
             margin: 0,
+            fontWeight: 500,
           }}
         >
           {title}
         </p>
 
-        <span
+        <div
           style={{
-            fontSize: "22px",
+            width: "40px",
+            height: "40px",
+            borderRadius: "12px",
+            background: "#F1F5F9",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          {icon}
-        </span>
+          <Icon size={20} />
+        </div>
       </div>
 
       <h2
         style={{
           margin: 0,
           color: "#0F172A",
-          fontSize: "28px",
+          fontSize: "30px",
+          fontWeight: 700,
         }}
       >
         {value}

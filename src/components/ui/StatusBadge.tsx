@@ -1,0 +1,61 @@
+import { COLORS } from "../../theme/colors";
+
+type Props = {
+  status: string;
+};
+
+export default function StatusBadge({
+  status,
+}: Props) {
+  const getStyles = () => {
+    switch (status) {
+      case "Validée":
+      case "Traitée":
+        return {
+          background: "#DCFCE7",
+          color: "#15803D",
+        };
+
+      case "En cours":
+        return {
+          background: "#DBEAFE",
+          color: "#1D4ED8",
+        };
+
+      case "En attente":
+        return {
+          background: "#FEF3C7",
+          color: "#D97706",
+        };
+
+      case "Rejetée":
+          return {
+            background: "#FEE2E2",
+            color: COLORS.danger,
+          };
+
+      default:
+        return {
+          background: "#E2E8F0",
+          color: "#475569",
+        };
+    }
+  };
+
+  const styles = getStyles();
+
+  return (
+    <span
+      style={{
+        background: styles.background,
+        color: styles.color,
+        padding: "6px 12px",
+        borderRadius: "999px",
+        fontSize: "12px",
+        fontWeight: 600,
+      }}
+    >
+      {status}
+    </span>
+  );
+}

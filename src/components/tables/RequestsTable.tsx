@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+import { Eye, Filter } from "lucide-react";
+
+import StatusBadge from "../ui/StatusBadge";
+import SearchInput from "../ui/SearchInput";
 
 const requests = [
   {
@@ -31,40 +35,6 @@ const requests = [
   },
 ];
 
-const getStatusStyle = (status: string) => {
-  switch (status) {
-    case "Validée":
-      return {
-        background: "#DCFCE7",
-        color: "#15803D",
-      };
-
-    case "En cours":
-      return {
-        background: "#DBEAFE",
-        color: "#1D4ED8",
-      };
-
-    case "Rejetée":
-      return {
-        background: "#FEE2E2",
-        color: "#DC2626",
-      };
-
-    case "En attente":
-      return {
-        background: "#FEF3C7",
-        color: "#D97706",
-      };
-
-    default:
-      return {
-        background: "#E2E8F0",
-        color: "#475569",
-      };
-  }
-};
-
 export default function RequestsTable() {
   return (
     <div
@@ -75,6 +45,40 @@ export default function RequestsTable() {
         overflow: "hidden",
       }}
     >
+      <div
+        style={{
+          padding: "20px",
+          borderBottom: "1px solid #E2E8F0",
+          display: "flex",
+          justifyContent: "space-between",
+          gap: "20px",
+        }}
+      >
+        <div
+          style={{
+            width: "320px",
+          }}
+        >
+          <SearchInput placeholder="Rechercher une demande..." />
+        </div>
+
+        <button
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            border: "1px solid #E2E8F0",
+            background: "#FFFFFF",
+            borderRadius: "12px",
+            padding: "10px 14px",
+            cursor: "pointer",
+          }}
+        >
+          <Filter size={16} />
+          Filtres
+        </button>
+      </div>
+
       <table
         style={{
           width: "100%",
@@ -134,17 +138,9 @@ export default function RequestsTable() {
               </td>
 
               <td style={{ padding: "16px" }}>
-                <span
-                  style={{
-                    ...getStatusStyle(request.status),
-                    padding: "6px 12px",
-                    borderRadius: "999px",
-                    fontSize: "12px",
-                    fontWeight: 600,
-                  }}
-                >
-                  {request.status}
-                </span>
+                <StatusBadge
+                  status={request.status}
+                />
               </td>
 
               <td style={{ padding: "16px" }}>
@@ -155,11 +151,15 @@ export default function RequestsTable() {
                 <Link
                   to={`/requests/${request.id}`}
                   style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
                     color: "#2563EB",
                     textDecoration: "none",
                     fontWeight: 600,
                   }}
                 >
+                  <Eye size={16} />
                   Voir
                 </Link>
               </td>

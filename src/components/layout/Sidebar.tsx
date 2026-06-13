@@ -1,42 +1,68 @@
 import { NavLink } from "react-router-dom";
 
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import DescriptionIcon from "@mui/icons-material/Description";
-import ReportIcon from "@mui/icons-material/Report";
-import QrCodeIcon from "@mui/icons-material/QrCode";
-import FolderOpenIcon from "@mui/icons-material/FolderOpen";
-import BarChartIcon from "@mui/icons-material/BarChart";
+import {
+  LayoutDashboard,
+  FileText,
+  AlertTriangle,
+  FolderOpen,
+  QrCode,
+  BarChart3,
+  Users,
+  UserCog,
+  Building2,
+  Settings,
+} from "lucide-react";
 
 const menuItems = [
   {
     label: "Tableau de bord",
     path: "/",
-    icon: <DashboardIcon />,
+    icon: <LayoutDashboard size={20} />,
   },
   {
     label: "Demandes",
     path: "/requests",
-    icon: <DescriptionIcon />,
+    icon: <FileText size={20} />,
   },
   {
     label: "Réclamations",
     path: "/complaints",
-    icon: <ReportIcon />,
+    icon: <AlertTriangle size={20} />,
+  },
+  {
+    label: "Citoyens",
+    path: "/users",
+    icon: <Users size={20} />,
+  },
+  {
+    label: "Agents",
+    path: "/agents",
+    icon: <UserCog size={20} />,
+  },
+  {
+    label: "Départements",
+    path: "/departments",
+    icon: <Building2 size={20} />,
   },
   {
     label: "Documents perdus",
     path: "/lost-documents",
-    icon: <FolderOpenIcon />,
+    icon: <FolderOpen size={20} />,
   },
   {
     label: "Vérification QR",
     path: "/qr-verification",
-    icon: <QrCodeIcon />,
+    icon: <QrCode size={20} />,
   },
   {
     label: "Statistiques",
     path: "/analytics",
-    icon: <BarChartIcon />,
+    icon: <BarChart3 size={20} />,
+  },
+  {
+    label: "Paramètres",
+    path: "/settings",
+    icon: <Settings size={20} />,
   },
 ];
 
@@ -44,16 +70,17 @@ export default function Sidebar() {
   return (
     <div
       style={{
-        width: "240px",
+        width: "250px",
         minHeight: "100vh",
         background: "#1E293B",
         color: "#fff",
-        padding: "20px",
+        padding: "24px 16px",
       }}
     >
       <h2
         style={{
           marginBottom: "40px",
+          paddingLeft: "8px",
         }}
       >
         AdminGov
@@ -63,7 +90,7 @@ export default function Sidebar() {
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "8px",
+          gap: "6px",
         }}
       >
         {menuItems.map((item) => (
@@ -74,15 +101,14 @@ export default function Sidebar() {
               display: "flex",
               alignItems: "center",
               gap: "12px",
-              padding: "12px 16px",
+              padding: "12px 14px",
               borderRadius: "12px",
               textDecoration: "none",
               color: "#FFFFFF",
               background: isActive
                 ? "#334155"
                 : "transparent",
-              fontWeight: isActive ? 600 : 400,
-              transition: "0.2s",
+              fontWeight: isActive ? 600 : 500,
             })}
           >
             {item.icon}

@@ -10,6 +10,10 @@ import QrVerification from "../pages/QrVerification";
 import Analytics from "../pages/Analytics";
 import RequestDetails from "../pages/RequestDetails";
 import ComplaintDetails from "../pages/ComplaintDetails";
+import Users from "../pages/Users";
+import Agents from "../pages/Agents";
+import Departments from "../pages/Departments";
+import Settings from "../pages/Settings";
 
 export default function AppRoutes() {
   return (
@@ -21,25 +25,16 @@ export default function AppRoutes() {
         <Route path="/requests/:id" element={<RequestDetails />} />
 
         <Route path="/complaints" element={<Complaints />} />
-        <Route
-          path="/complaints/:id"
-          element={<ComplaintDetails />}
-        />
+        <Route path="/complaints/:id" element={<ComplaintDetails />} />
 
-        <Route
-          path="/lost-documents"
-          element={<LostDocuments />}
-        />
+        <Route path="/users" element={<Users />} />
+        <Route path="/agents" element={<Agents />} />
+        <Route path="/departments" element={<Departments />} />
+        <Route path="/settings" element={<Settings />} />
 
-        <Route
-          path="/qr-verification"
-          element={<QrVerification />}
-        />
-
-        <Route
-          path="/analytics"
-          element={<Analytics />}
-        />
+        <Route path="/lost-documents" element={<LostDocuments />} />
+        <Route path="/qr-verification" element={<QrVerification />} />
+        <Route path="/analytics" element={<Analytics />} />
       </Route>
     </Routes>
   );

@@ -1,3 +1,10 @@
+import {
+  FileText,
+  Clock3,
+  CheckCircle2,
+  AlertTriangle,
+} from "lucide-react";
+
 import PageHeader from "../components/ui/PageHeader";
 import StatCard from "../components/ui/StatCard";
 import RequestsChart from "../components/charts/RequestsChart";
@@ -19,31 +26,31 @@ export default function Dashboard() {
         }}
       >
         <StatCard
-          title="Demandes totales"
+          title="Demandes reçues"
           value="1 245"
           trend="+12% ce mois"
-          icon="📄"
+          icon={FileText}
         />
 
         <StatCard
-          title="Demandes en cours"
+          title="En traitement"
           value="321"
           trend="+4% cette semaine"
-          icon="⏳"
+          icon={Clock3}
         />
 
         <StatCard
-          title="Demandes traitées"
+          title="Demandes validées"
           value="875"
           trend="+18% ce mois"
-          icon="✅"
+          icon={CheckCircle2}
         />
 
         <StatCard
           title="Réclamations ouvertes"
           value="49"
           trend="-7% cette semaine"
-          icon="📢"
+          icon={AlertTriangle}
         />
       </div>
 
@@ -108,10 +115,10 @@ export default function Dashboard() {
             <h3>Activité récente</h3>
 
             <ul style={{ marginTop: "16px" }}>
-              <li>✓ Acte de naissance validé</li>
-              <li>✓ Réclamation affectée</li>
-              <li>✓ Certificat de résidence délivré</li>
-              <li>✓ Document retrouvé signalé</li>
+              <li>Acte de naissance validé</li>
+              <li>Réclamation affectée</li>
+              <li>Certificat de résidence délivré</li>
+              <li>Document retrouvé signalé</li>
             </ul>
           </div>
         </div>
