@@ -6,10 +6,12 @@ import Dashboard from "../pages/Dashboard";
 import Requests from "../pages/Requests";
 import Complaints from "../pages/Complaints";
 import LostDocuments from "../pages/LostDocuments";
-import QrVerification from "../pages/QrVerification";
+import LostDocumentDetails from "../pages/LostDocumentDetails";
 import Analytics from "../pages/Analytics";
 import RequestDetails from "../pages/RequestDetails";
 import ComplaintDetails from "../pages/ComplaintDetails";
+import Settings from "../pages/Settings";
+import Profile from "../pages/Profile";
 
 export default function AppRoutes() {
   return (
@@ -30,15 +32,23 @@ export default function AppRoutes() {
           path="/lost-documents"
           element={<LostDocuments />}
         />
-
         <Route
-          path="/qr-verification"
-          element={<QrVerification />}
+          path="/lost-documents/:id"
+          element={<LostDocumentDetails />}
         />
-
         <Route
           path="/analytics"
           element={<Analytics />}
+        />
+
+        <Route
+          path="/settings"
+          element={<Settings />}
+        />
+
+        <Route
+          path="/profile"
+          element={<Profile />}
         />
       </Route>
     </Routes>
