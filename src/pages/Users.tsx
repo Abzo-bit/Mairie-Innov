@@ -1,8 +1,17 @@
-import { Plus, Download, Eye } from "lucide-react";
+import {
+  Plus,
+  Download,
+  Eye,
+  Users as UsersIcon,
+  UserCheck,
+  UserPlus,
+  ShieldCheck,
+} from "lucide-react";
 
 import SearchInput from "../components/ui/SearchInput";
 import StatusBadge from "../components/ui/StatusBadge";
 import PageHeader from "../components/ui/PageHeader";
+import StatCard from "../components/ui/StatCard";
 
 const users = [
   {
@@ -41,12 +50,49 @@ export default function Users() {
 
       <div
         style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4,1fr)",
+          gap: "20px",
+          marginBottom: "24px",
+        }}
+      >
+        <StatCard
+          title="Total citoyens"
+          value="12 458"
+          trend="+12% ce mois"
+          icon={UsersIcon}
+        />
+
+        <StatCard
+          title="Comptes validés"
+          value="11 203"
+          trend="+8% ce mois"
+          icon={UserCheck}
+        />
+
+        <StatCard
+          title="Nouveaux inscrits"
+          value="254"
+          trend="+18% cette semaine"
+          icon={UserPlus}
+        />
+
+        <StatCard
+          title="Identités vérifiées"
+          value="98%"
+          trend="+2% ce mois"
+          icon={ShieldCheck}
+        />
+      </div>
+
+      <div
+        style={{
           display: "flex",
           justifyContent: "space-between",
           marginBottom: "20px",
         }}
       >
-        <div style={{ width: "320px" }}>
+        <div style={{ width: "350px" }}>
           <SearchInput placeholder="Rechercher un citoyen..." />
         </div>
 
@@ -58,8 +104,8 @@ export default function Users() {
         >
           <button
             style={{
-              padding: "10px 16px",
-              borderRadius: "12px",
+              padding: "12px 18px",
+              borderRadius: "14px",
               border: "1px solid #E2E8F0",
               background: "#FFFFFF",
               display: "flex",
@@ -74,15 +120,16 @@ export default function Users() {
 
           <button
             style={{
-              padding: "10px 16px",
-              borderRadius: "12px",
+              padding: "12px 18px",
+              borderRadius: "14px",
               border: "none",
-              background: "#1E293B",
+              background: "#1E3A8A",
               color: "#FFFFFF",
               display: "flex",
               alignItems: "center",
               gap: "8px",
               cursor: "pointer",
+              fontWeight: 600,
             }}
           >
             <Plus size={16} />
@@ -95,7 +142,7 @@ export default function Users() {
         style={{
           background: "#FFFFFF",
           border: "1px solid #E2E8F0",
-          borderRadius: "16px",
+          borderRadius: "24px",
           overflow: "hidden",
         }}
       >
@@ -107,13 +154,12 @@ export default function Users() {
         >
           <thead>
             <tr style={{ background: "#F8FAFC" }}>
-              <th style={{ padding: "16px", textAlign: "left" }}>ID</th>
-              <th style={{ padding: "16px", textAlign: "left" }}>Nom</th>
-              <th style={{ padding: "16px", textAlign: "left" }}>Email</th>
-              <th style={{ padding: "16px", textAlign: "left" }}>Téléphone</th>
-              <th style={{ padding: "16px", textAlign: "left" }}>Rôle</th>
-              <th style={{ padding: "16px", textAlign: "left" }}>Statut</th>
-              <th style={{ padding: "16px", textAlign: "left" }}>Actions</th>
+              <th style={{ padding: "18px", textAlign: "left" }}>Citoyen</th>
+              <th style={{ padding: "18px", textAlign: "left" }}>Email</th>
+              <th style={{ padding: "18px", textAlign: "left" }}>Téléphone</th>
+              <th style={{ padding: "18px", textAlign: "left" }}>Rôle</th>
+              <th style={{ padding: "18px", textAlign: "left" }}>Statut</th>
+              <th style={{ padding: "18px", textAlign: "left" }}>Action</th>
             </tr>
           </thead>
 
@@ -122,28 +168,82 @@ export default function Users() {
               <tr
                 key={user.id}
                 style={{
-                  borderTop: "1px solid #E2E8F0",
+                  borderTop: "1px solid #F1F5F9",
                 }}
               >
-                <td style={{ padding: "16px" }}>{user.id}</td>
-                <td style={{ padding: "16px" }}>{user.nom}</td>
-                <td style={{ padding: "16px" }}>{user.email}</td>
-                <td style={{ padding: "16px" }}>{user.telephone}</td>
-                <td style={{ padding: "16px" }}>{user.role}</td>
+                <td style={{ padding: "18px" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: "42px",
+                        height: "42px",
+                        borderRadius: "14px",
+                        background: "#DBEAFE",
+                        color: "#1E3A8A",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {user.nom.charAt(0)}
+                    </div>
 
-                <td style={{ padding: "16px" }}>
+                    <div>
+                      <div
+                        style={{
+                          fontWeight: 600,
+                        }}
+                      >
+                        {user.nom}
+                      </div>
+
+                      <div
+                        style={{
+                          fontSize: "13px",
+                          color: "#64748B",
+                        }}
+                      >
+                        {user.id}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+
+                <td style={{ padding: "18px" }}>
+                  {user.email}
+                </td>
+
+                <td style={{ padding: "18px" }}>
+                  {user.telephone}
+                </td>
+
+                <td style={{ padding: "18px" }}>
+                  {user.role}
+                </td>
+
+                <td style={{ padding: "18px" }}>
                   <StatusBadge status={user.statut} />
                 </td>
 
-                <td style={{ padding: "16px" }}>
+                <td style={{ padding: "18px" }}>
                   <button
                     style={{
-                      border: "none",
-                      background: "transparent",
+                      width: "38px",
+                      height: "38px",
+                      borderRadius: "12px",
+                      border: "1px solid #E2E8F0",
+                      background: "#FFFFFF",
                       cursor: "pointer",
                     }}
                   >
-                    <Eye size={18} />
+                    <Eye size={16} />
                   </button>
                 </td>
               </tr>

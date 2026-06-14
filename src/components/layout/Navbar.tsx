@@ -1,49 +1,71 @@
-import SearchIcon from "@mui/icons-material/Search";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import {
+  Search,
+  Bell,
+  Settings,
+  ChevronDown,
+} from "lucide-react";
 
 export default function Navbar() {
   return (
-    <div
+    <header
       style={{
-        height: "70px",
+        height: "84px",
         background: "#FFFFFF",
         borderBottom: "1px solid #E2E8F0",
         display: "flex",
-        justifyContent: "space-between",
         alignItems: "center",
-        padding: "0 24px",
+        justifyContent: "space-between",
+        padding: "0 32px",
       }}
     >
-      <h3
-        style={{
-          color: "#0F172A",
-        }}
-      >
-        Tableau de bord
-      </h3>
+      <div>
+        <p
+          style={{
+            margin: 0,
+            color: "#94A3B8",
+            fontSize: "13px",
+            fontWeight: 500,
+          }}
+        >
+          Administration numérique
+        </p>
+
+        <h2
+          style={{
+            margin: 0,
+            marginTop: "4px",
+            color: "#0F172A",
+            fontSize: "22px",
+            fontWeight: 700,
+            letterSpacing: "-0.5px",
+          }}
+        >
+          Tableau de bord
+        </h2>
+      </div>
 
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "20px",
+          gap: "16px",
         }}
       >
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            background: "#F1F5F9",
-            padding: "8px 12px",
-            borderRadius: "10px",
-            minWidth: "260px",
+            gap: "12px",
+            width: "340px",
+            background: "#F8FAFC",
+            border: "1px solid #E2E8F0",
+            borderRadius: "18px",
+            padding: "12px 16px",
           }}
         >
-          <SearchIcon
-            style={{
-              color: "#64748B",
-            }}
+          <Search
+            size={18}
+            color="#64748B"
           />
 
           <input
@@ -51,33 +73,99 @@ export default function Navbar() {
             style={{
               border: "none",
               outline: "none",
-              background: "transparent",
-              marginLeft: "10px",
               width: "100%",
+              background: "transparent",
+              color: "#0F172A",
+              fontSize: "14px",
             }}
           />
         </div>
 
-        <NotificationsNoneIcon />
+        <button
+          style={{
+            width: "48px",
+            height: "48px",
+            borderRadius: "16px",
+            border: "1px solid #E2E8F0",
+            background: "#FFFFFF",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Bell size={18} />
+        </button>
 
-        <SettingsOutlinedIcon />
+        <button
+          style={{
+            width: "48px",
+            height: "48px",
+            borderRadius: "16px",
+            border: "1px solid #E2E8F0",
+            background: "#FFFFFF",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Settings size={18} />
+        </button>
 
         <div
           style={{
-            width: "40px",
-            height: "40px",
-            borderRadius: "50%",
-            background: "#1E293B",
-            color: "white",
             display: "flex",
-            justifyContent: "center",
             alignItems: "center",
-            fontWeight: "bold",
+            gap: "12px",
+            border: "1px solid #E2E8F0",
+            borderRadius: "18px",
+            padding: "8px 14px",
+            cursor: "pointer",
+            background: "#FFFFFF",
           }}
         >
-          A
+          <div
+            style={{
+              width: "46px",
+              height: "46px",
+              borderRadius: "16px",
+              background: "#2563EB",
+              color: "#FFFFFF",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 700,
+              fontSize: "15px",
+            }}
+          >
+            AD
+          </div>
+
+          <div>
+            <div
+              style={{
+                fontSize: "15px",
+                fontWeight: 700,
+                color: "#0F172A",
+              }}
+            >
+              Abzo Dieng
+            </div>
+
+            <div
+              style={{
+                fontSize: "12px",
+                color: "#64748B",
+              }}
+            >
+              Super Administrateur
+            </div>
+          </div>
+
+          <ChevronDown size={16} />
         </div>
       </div>
-    </div>
+    </header>
   );
 }

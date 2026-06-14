@@ -1,13 +1,13 @@
+import PageHeader from "../components/ui/PageHeader";
+import StatusBadge from "../components/ui/StatusBadge";
+
 export default function ComplaintDetails() {
   return (
     <div>
-      <h1
-        style={{
-          marginBottom: "24px",
-        }}
-      >
-        Détail de la réclamation
-      </h1>
+      <PageHeader
+        title="Détail de la réclamation"
+        subtitle="Suivi complet du dossier de réclamation"
+      />
 
       <div
         style={{
@@ -18,76 +18,101 @@ export default function ComplaintDetails() {
       >
         <div
           style={{
-            background: "#FFFFFF",
+            background: "#FFF",
             border: "1px solid #E2E8F0",
             borderRadius: "16px",
-            padding: "20px",
+            padding: "24px",
           }}
         >
-          <h3>Informations générales</h3>
+          <h3>Informations du citoyen</h3>
 
-          <p><strong>Référence :</strong> REC-001</p>
-          <p><strong>Type :</strong> Route dégradée</p>
-          <p><strong>Localisation :</strong> Dakar Plateau</p>
-          <p><strong>Date :</strong> 12/06/2026</p>
-          <p><strong>Statut :</strong> En attente</p>
+          <p><strong>Nom :</strong> Mamadou Diop</p>
+          <p><strong>Téléphone :</strong> +221 77 000 00 00</p>
+          <p><strong>Email :</strong> mamadou@email.com</p>
+          <p><strong>Adresse :</strong> Dakar Plateau</p>
         </div>
 
         <div
           style={{
-            background: "#FFFFFF",
+            background: "#FFF",
             border: "1px solid #E2E8F0",
             borderRadius: "16px",
-            padding: "20px",
+            padding: "24px",
           }}
         >
-          <h3>Citoyen</h3>
+          <h3>Informations de la réclamation</h3>
 
-          <p><strong>Nom :</strong> Mamadou Diop</p>
-          <p><strong>Téléphone :</strong> 77 000 00 00</p>
-          <p><strong>Email :</strong> mamadou@email.com</p>
+          <p><strong>Référence :</strong> REC-001</p>
+          <p><strong>Catégorie :</strong> Voirie</p>
+          <p><strong>Localisation :</strong> Dakar Plateau</p>
+          <p><strong>Date :</strong> 12/06/2026</p>
+          <p><strong>Agent :</strong> Moussa Diallo</p>
+
+          <StatusBadge status="En attente" />
         </div>
       </div>
 
       <div
         style={{
           marginTop: "20px",
-          background: "#FFFFFF",
+          background: "#FFF",
           border: "1px solid #E2E8F0",
           borderRadius: "16px",
-          padding: "20px",
+          padding: "24px",
         }}
       >
         <h3>Description</h3>
 
         <p>
-          La chaussée présente plusieurs nids-de-poule
-          rendant la circulation difficile.
+          Plusieurs nids-de-poule rendent la circulation difficile
+          sur l’avenue principale du quartier.
         </p>
       </div>
 
       <div
         style={{
           marginTop: "20px",
-          background: "#FFFFFF",
+          background: "#FFF",
           border: "1px solid #E2E8F0",
           borderRadius: "16px",
-          padding: "20px",
+          padding: "24px",
         }}
       >
-        <h3>Photo</h3>
+        <h3>Historique de traitement</h3>
+
+        <ul>
+          <li>12/06/2026 - Réclamation créée</li>
+          <li>13/06/2026 - Vérification effectuée</li>
+          <li>14/06/2026 - Affectée à Moussa Diallo</li>
+          <li>15/06/2026 - En attente d'intervention</li>
+        </ul>
+      </div>
+
+      <div
+        style={{
+          marginTop: "20px",
+          background: "#FFF",
+          border: "1px solid #E2E8F0",
+          borderRadius: "16px",
+          padding: "24px",
+        }}
+      >
+        <h3>Photo jointe</h3>
 
         <div
           style={{
+            marginTop: "16px",
             height: "250px",
-            background: "#F1F5F9",
+            background: "#F8FAFC",
+            border: "2px dashed #CBD5E1",
             borderRadius: "12px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            color: "#64748B",
           }}
         >
-          Image de la réclamation
+          Aperçu de la photo de la réclamation
         </div>
       </div>
 
@@ -98,9 +123,61 @@ export default function ComplaintDetails() {
           gap: "12px",
         }}
       >
-        <button>Affecter</button>
-        <button>Mettre en cours</button>
-        <button>Clôturer</button>
+        <button
+          style={{
+            background: "#334155",
+            color: "#FFF",
+            border: "none",
+            borderRadius: "10px",
+            padding: "10px 18px",
+            fontWeight: 600,
+            cursor: "pointer",
+          }}
+        >
+          Assigner
+        </button>
+
+        <button
+          style={{
+            background: "#2563EB",
+            color: "#FFF",
+            border: "none",
+            borderRadius: "10px",
+            padding: "10px 18px",
+            fontWeight: 600,
+            cursor: "pointer",
+          }}
+        >
+          En cours
+        </button>
+
+        <button
+          style={{
+            background: "#16A34A",
+            color: "#FFF",
+            border: "none",
+            borderRadius: "10px",
+            padding: "10px 18px",
+            fontWeight: 600,
+            cursor: "pointer",
+          }}
+        >
+          Résolue
+        </button>
+
+        <button
+          style={{
+            background: "#DC2626",
+            color: "#FFF",
+            border: "none",
+            borderRadius: "10px",
+            padding: "10px 18px",
+            fontWeight: 600,
+            cursor: "pointer",
+          }}
+        >
+          Rejeter
+        </button>
       </div>
     </div>
   );

@@ -68,29 +68,76 @@ const menuItems = [
 
 export default function Sidebar() {
   return (
-    <div
+    <aside
       style={{
-        width: "250px",
-        minHeight: "100vh",
-        background: "#1E293B",
-        color: "#fff",
-        padding: "24px 16px",
+        width: "280px",
+        height: "100vh",
+        position: "sticky",
+        top: 0,
+        background: "#0F172A",
+        color: "#FFFFFF",
+        display: "flex",
+        flexDirection: "column",
+        padding: "24px 18px",
+        boxSizing: "border-box",
       }}
     >
-      <h2
-        style={{
-          marginBottom: "40px",
-          paddingLeft: "8px",
-        }}
-      >
-        AdminGov
-      </h2>
+      <div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            marginBottom: "6px",
+          }}
+        >
+          <div
+            style={{
+              width: "42px",
+              height: "42px",
+              borderRadius: "14px",
+              background: "#2563EB",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 700,
+            }}
+          >
+            T
+          </div>
+
+          <div>
+            <h2
+              style={{
+                margin: 0,
+                fontSize: "24px",
+                fontWeight: 800,
+                letterSpacing: "-1px",
+              }}
+            >
+              Teranga Admin
+            </h2>
+
+            <p
+              style={{
+                margin: 0,
+                color: "#94A3B8",
+                fontSize: "12px",
+              }}
+            >
+              Administration numérique
+            </p>
+          </div>
+        </div>
+      </div>
 
       <div
         style={{
+          flex: 1,
+          marginTop: "32px",
           display: "flex",
           flexDirection: "column",
-          gap: "6px",
+          gap: "8px",
         }}
       >
         {menuItems.map((item) => (
@@ -100,15 +147,18 @@ export default function Sidebar() {
             style={({ isActive }) => ({
               display: "flex",
               alignItems: "center",
-              gap: "12px",
-              padding: "12px 14px",
-              borderRadius: "12px",
+              gap: "14px",
+              padding: "14px 16px",
+              borderRadius: "18px",
               textDecoration: "none",
-              color: "#FFFFFF",
+              color: isActive
+                ? "#FFFFFF"
+                : "#CBD5E1",
               background: isActive
-                ? "#334155"
+                ? "#1E293B"
                 : "transparent",
               fontWeight: isActive ? 600 : 500,
+              transition: "all .2s ease",
             })}
           >
             {item.icon}
@@ -116,6 +166,64 @@ export default function Sidebar() {
           </NavLink>
         ))}
       </div>
-    </div>
+
+      <div
+        style={{
+          borderTop: "1px solid #1E293B",
+          paddingTop: "20px",
+        }}
+      >
+        <div
+          style={{
+            background: "#1E293B",
+            borderRadius: "20px",
+            padding: "16px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+            }}
+          >
+            <div
+              style={{
+                width: "42px",
+                height: "42px",
+                borderRadius: "14px",
+                background: "#2563EB",
+                color: "#FFFFFF",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 700,
+              }}
+            >
+              AD
+            </div>
+
+            <div>
+              <div
+                style={{
+                  fontWeight: 700,
+                }}
+              >
+                Abzo Dieng
+              </div>
+
+              <div
+                style={{
+                  color: "#94A3B8",
+                  fontSize: "12px",
+                }}
+              >
+                Super Administrateur
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
   );
 }

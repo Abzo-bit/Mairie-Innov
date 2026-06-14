@@ -1,5 +1,3 @@
-import { COLORS } from "../../theme/colors";
-
 type Props = {
   status: string;
 };
@@ -11,6 +9,7 @@ export default function StatusBadge({
     switch (status) {
       case "Validée":
       case "Traitée":
+      case "Résolue":
         return {
           background: "#DCFCE7",
           color: "#15803D",
@@ -29,10 +28,10 @@ export default function StatusBadge({
         };
 
       case "Rejetée":
-          return {
-            background: "#FEE2E2",
-            color: COLORS.danger,
-          };
+        return {
+          background: "#FEE2E2",
+          color: "#DC2626",
+        };
 
       default:
         return {
