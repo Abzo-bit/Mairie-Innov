@@ -6,7 +6,7 @@ import Dashboard from "../pages/Dashboard";
 import Requests from "../pages/Requests";
 import Complaints from "../pages/Complaints";
 import LostDocuments from "../pages/LostDocuments";
-import QrVerification from "../pages/QrVerification";
+import LostDocumentDetails from "../pages/LostDocumentDetails";
 import Analytics from "../pages/Analytics";
 import RequestDetails from "../pages/RequestDetails";
 import ComplaintDetails from "../pages/ComplaintDetails";
@@ -33,7 +33,7 @@ export default function AppRoutes() {
         <Route path="/settings" element={<Settings />} />
 
         <Route path="/lost-documents" element={<LostDocuments />} />
-        <Route path="/qr-verification" element={<QrVerification />} />
+        <Route path="/lost-documents/:id" element={<LostDocumentDetails />} />
         <Route path="/analytics" element={<Analytics />} />
       </Route>
     </Routes>

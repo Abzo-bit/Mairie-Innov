@@ -1,11 +1,31 @@
-import {
-  Search,
-  Bell,
-  Settings,
-  ChevronDown,
-} from "lucide-react";
+import SearchIcon from "@mui/icons-material/Search";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 
-export default function Navbar() {
+export default function Navbar({ onToggleSidebar }: Props) {
+  const location = useLocation();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const getPageTitle = () => {
+    const path = location.pathname;
+    if (path === "/") return "Tableau de bord";
+    if (path.startsWith("/requests")) return "Demandes administratives";
+    if (path.startsWith("/complaints")) return "Réclamations citoyennes";
+    if (path.startsWith("/lost-documents")) return "Documents perdus";
+    if (path === "/analytics") return "Statistiques & Analyses";
+    if (path === "/settings") return "Paramètres";
+    if (path === "/profile") return "Profil Administrateur";
+    return "Mairie Innov";
+  };
+
   return (
     <header
       style={{
@@ -15,57 +35,39 @@ export default function Navbar() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "0 32px",
+        alignItems: "center",
+        padding: "0 24px",
       }}
     >
-      <div>
-        <p
-          style={{
-            margin: 0,
-            color: "#94A3B8",
-            fontSize: "13px",
-            fontWeight: 500,
-          }}
-        >
-          Administration numérique
-        </p>
-
-        <h2
-          style={{
-            margin: 0,
-            marginTop: "4px",
-            color: "#0F172A",
-            fontSize: "22px",
-            fontWeight: 700,
-            letterSpacing: "-0.5px",
-          }}
-        >
-          Tableau de bord
-        </h2>
-      </div>
+      <h3
+        style={{
+          color: "#0F172A",
+        }}
+      >
+        Tableau de bord
+      </h3>
 
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "16px",
+          gap: "20px",
         }}
       >
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "12px",
-            width: "340px",
-            background: "#F8FAFC",
-            border: "1px solid #E2E8F0",
-            borderRadius: "18px",
-            padding: "12px 16px",
+            background: "#F1F5F9",
+            padding: "8px 12px",
+            borderRadius: "10px",
+            minWidth: "260px",
           }}
         >
-          <Search
-            size={18}
-            color="#64748B"
+          <SearchIcon
+            style={{
+              color: "#64748B",
+            }}
           />
 
           <input
@@ -73,97 +75,30 @@ export default function Navbar() {
             style={{
               border: "none",
               outline: "none",
-              width: "100%",
               background: "transparent",
-              color: "#0F172A",
-              fontSize: "14px",
+              marginLeft: "10px",
+              width: "100%",
             }}
           />
         </div>
 
-        <button
-          style={{
-            width: "48px",
-            height: "48px",
-            borderRadius: "16px",
-            border: "1px solid #E2E8F0",
-            background: "#FFFFFF",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Bell size={18} />
-        </button>
+        <NotificationsNoneIcon />
 
-        <button
-          style={{
-            width: "48px",
-            height: "48px",
-            borderRadius: "16px",
-            border: "1px solid #E2E8F0",
-            background: "#FFFFFF",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Settings size={18} />
-        </button>
+        <SettingsOutlinedIcon />
 
         <div
           style={{
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+            background: "#1E293B",
+            color: "white",
             display: "flex",
             alignItems: "center",
-            gap: "12px",
-            border: "1px solid #E2E8F0",
-            borderRadius: "18px",
-            padding: "8px 14px",
-            cursor: "pointer",
-            background: "#FFFFFF",
+            fontWeight: "bold",
           }}
         >
-          <div
-            style={{
-              width: "46px",
-              height: "46px",
-              borderRadius: "16px",
-              background: "#2563EB",
-              color: "#FFFFFF",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: 700,
-              fontSize: "15px",
-            }}
-          >
-            AD
-          </div>
-
-          <div>
-            <div
-              style={{
-                fontSize: "15px",
-                fontWeight: 700,
-                color: "#0F172A",
-              }}
-            >
-              Abzo Dieng
-            </div>
-
-            <div
-              style={{
-                fontSize: "12px",
-                color: "#64748B",
-              }}
-            >
-              Super Administrateur
-            </div>
-          </div>
-
-          <ChevronDown size={16} />
+          A
         </div>
       </div>
     </header>

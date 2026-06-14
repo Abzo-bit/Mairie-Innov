@@ -1,11 +1,12 @@
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { X } from "lucide-react";
 
 import {
   LayoutDashboard,
   FileText,
   AlertTriangle,
   FolderOpen,
-  QrCode,
   BarChart3,
   Users,
   UserCog,
@@ -45,16 +46,12 @@ const menuItems = [
     icon: <Building2 size={20} />,
   },
   {
-    label: "Documents perdus",
+    label: "Documents",
     path: "/lost-documents",
     icon: <FolderOpen size={20} />,
   },
   {
-    label: "Vérification QR",
-    path: "/qr-verification",
-    icon: <QrCode size={20} />,
-  },
-  {
+
     label: "Statistiques",
     path: "/analytics",
     icon: <BarChart3 size={20} />,
@@ -66,69 +63,65 @@ const menuItems = [
   },
 ];
 
-export default function Sidebar() {
+type Props = {
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+export default function Sidebar({ isOpen, onClose }: Props) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const sidebarStyles: React.CSSProperties = {
+    width: "240px",
+    minHeight: "100vh",
+    background: "#1E293B",
+    color: "#fff",
+    padding: "20px",
+    transition: "all 0.3s ease",
+    zIndex: 999,
+    position: isMobile ? "fixed" : "relative",
+    top: 0,
+    left: isMobile ? (isOpen ? "0" : "-240px") : "0",
+    boxShadow: isMobile && isOpen ? "4px 0 10px rgba(0,0,0,0.2)" : "none",
+  };
+
   return (
-    <aside
-      style={{
-        width: "280px",
-        height: "100vh",
-        position: "sticky",
-        top: 0,
-        background: "#0F172A",
-        color: "#FFFFFF",
-        display: "flex",
-        flexDirection: "column",
-        padding: "24px 18px",
-        boxSizing: "border-box",
-      }}
-    >
-      <div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "12px",
-            marginBottom: "6px",
-          }}
-        >
-          <div
+    <div style={sidebarStyles}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "40px",
+        }}
+      >
+        <h2 style={{ margin: 0 }}>AdminGov</h2>
+        {isMobile && (
+          <button
+            onClick={onClose}
             style={{
-              width: "42px",
-              height: "42px",
-              borderRadius: "14px",
-              background: "#2563EB",
+              border: "none",
+              background: "transparent",
+              color: "#FFFFFF",
+              cursor: "pointer",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontWeight: 700,
+              padding: "4px",
             }}
           >
-            T
-          </div>
+            <X size={20} />
+          </button>
+        )}
 
-          <div>
-            <h2
-              style={{
-                margin: 0,
-                fontSize: "24px",
-                fontWeight: 800,
-                letterSpacing: "-1px",
-              }}
-            >
-              Teranga Admin
-            </h2>
-
-            <p
-              style={{
-                margin: 0,
-                color: "#94A3B8",
-                fontSize: "12px",
-              }}
-            >
-              Administration numérique
-            </p>
-          </div>
-        </div>
       </div>
 
       <div
@@ -144,6 +137,9 @@ export default function Sidebar() {
           <NavLink
             key={item.path}
             to={item.path}
+            onClick={() => {
+              if (isMobile) onClose();
+            }}
             style={({ isActive }) => ({
               display: "flex",
               alignItems: "center",
@@ -151,14 +147,11 @@ export default function Sidebar() {
               padding: "14px 16px",
               borderRadius: "18px",
               textDecoration: "none",
-              color: isActive
-                ? "#FFFFFF"
-                : "#CBD5E1",
-              background: isActive
-                ? "#1E293B"
-                : "transparent",
-              fontWeight: isActive ? 600 : 500,
-              transition: "all .2s ease",
+              color: "#FFFFFF",
+              background: isActive ? "#334155" : "transparent",
+              fontWeight: isActive ? 600 : 400,
+              transition: "0.2s",
+
             })}
           >
             {item.icon}
