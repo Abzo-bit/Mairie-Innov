@@ -1,6 +1,12 @@
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+
+type Props = {
+  onToggleSidebar: () => void;
+};
 
 export default function Navbar({ onToggleSidebar }: Props) {
   const location = useLocation();
