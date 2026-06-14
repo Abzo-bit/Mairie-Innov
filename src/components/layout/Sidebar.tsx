@@ -94,7 +94,7 @@ export default function Sidebar({ isOpen, onClose }: Props) {
   };
 
   return (
-    <div style={sidebarStyles}>
+    <aside style={sidebarStyles}>
       <div
         style={{
           display: "flex",
