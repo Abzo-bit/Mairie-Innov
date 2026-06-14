@@ -228,25 +228,25 @@ export default function LostDocuments() {
           title="Total"
           value={documents.length.toString()}
           trend=""
-          icon={<FolderOpen size={24} style={{ color: "#334155" }} />}
+          icon={FolderOpen}
         />
         <StatCard
           title="Documents Déclarés"
           value={documents.filter((d) => d.status === "Déclaré").length.toString()}
           trend=""
-          icon={<FileText size={24} style={{ color: "#334155" }} />}
+          icon={FileText}
         />
         <StatCard
           title="Documents Retrouvés"
           value={documents.filter((d) => d.status === "Retrouvé").length.toString()}
           trend=""
-          icon={<Inbox size={24} style={{ color: "#334155" }} />}
+          icon={Inbox}
         />
         <StatCard
           title="Documents Restitués"
           value={documents.filter((d) => d.status === "Restitué").length.toString()}
           trend=""
-          icon={<CheckCircle size={24} style={{ color: "#334155" }} />}
+          icon={CheckCircle}
         />
       </div>
 
