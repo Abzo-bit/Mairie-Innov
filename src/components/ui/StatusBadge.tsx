@@ -34,6 +34,7 @@ export default function StatusBadge({ status }: Props) {
           color: "#1D4ED8",
           border: "1px solid #BFDBFE",
         };
+
       case "Rejetée":
         return {
           background: "#FEE2E2",
@@ -64,11 +65,13 @@ export default function StatusBadge({ status }: Props) {
           background: "#F1F5F9",
           color: "#475569",
           border: "1px solid #E2E8F0",
+
         };
     }
   };
 
   const style = getStyle(status);
+
 
   return (
     <span
@@ -80,6 +83,7 @@ export default function StatusBadge({ status }: Props) {
         fontSize: "12px",
         fontWeight: 600,
         ...style,
+
       }}
     >
       {status}

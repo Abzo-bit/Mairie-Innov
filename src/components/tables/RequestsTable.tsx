@@ -1,4 +1,7 @@
-import { Link } from "react-router-dom";
+import { Eye, Filter, Download } from "lucide-react";
+
+import SearchInput from "../ui/SearchInput";
+import StatusBadge from "../ui/StatusBadge";
 
 const requests = [
   {
@@ -31,50 +34,74 @@ const requests = [
   },
 ];
 
-const getStatusStyle = (status: string) => {
-  switch (status) {
-    case "Validée":
-      return {
-        background: "#DCFCE7",
-        color: "#15803D",
-      };
-
-    case "En cours":
-      return {
-        background: "#DBEAFE",
-        color: "#1D4ED8",
-      };
-
-    case "Rejetée":
-      return {
-        background: "#FEE2E2",
-        color: "#DC2626",
-      };
-
-    case "En attente":
-      return {
-        background: "#FEF3C7",
-        color: "#D97706",
-      };
-
-    default:
-      return {
-        background: "#E2E8F0",
-        color: "#475569",
-      };
-  }
-};
-
 export default function RequestsTable() {
   return (
     <div
       style={{
         background: "#FFFFFF",
-        borderRadius: "16px",
+        borderRadius: "24px",
         border: "1px solid #E2E8F0",
         overflow: "hidden",
       }}
     >
+      <div
+        style={{
+          padding: "24px",
+          borderBottom: "1px solid #E2E8F0",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "20px",
+        }}
+      >
+        <div style={{ width: "340px" }}>
+          <SearchInput placeholder="Rechercher une demande..." />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            gap: "12px",
+          }}
+        >
+          <button
+            style={{
+              height: "44px",
+              padding: "0 16px",
+              borderRadius: "14px",
+              border: "1px solid #E2E8F0",
+              background: "#FFFFFF",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              cursor: "pointer",
+            }}
+          >
+            <Filter size={16} />
+            Filtres
+          </button>
+
+          <button
+            style={{
+              height: "44px",
+              padding: "0 16px",
+              borderRadius: "14px",
+              border: "none",
+              background: "#1E3A8A",
+              color: "#FFFFFF",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              cursor: "pointer",
+              fontWeight: 600,
+            }}
+          >
+            <Download size={16} />
+            Exporter
+          </button>
+        </div>
+      </div>
+
       <table
         style={{
           width: "100%",
@@ -87,29 +114,12 @@ export default function RequestsTable() {
               background: "#F8FAFC",
             }}
           >
-            <th style={{ padding: "16px", textAlign: "left" }}>
-              Référence
-            </th>
-
-            <th style={{ padding: "16px", textAlign: "left" }}>
-              Citoyen
-            </th>
-
-            <th style={{ padding: "16px", textAlign: "left" }}>
-              Service
-            </th>
-
-            <th style={{ padding: "16px", textAlign: "left" }}>
-              Statut
-            </th>
-
-            <th style={{ padding: "16px", textAlign: "left" }}>
-              Date
-            </th>
-
-            <th style={{ padding: "16px", textAlign: "left" }}>
-              Actions
-            </th>
+            <th style={{ padding: "18px", textAlign: "left" }}>Référence</th>
+            <th style={{ padding: "18px", textAlign: "left" }}>Citoyen</th>
+            <th style={{ padding: "18px", textAlign: "left" }}>Service</th>
+            <th style={{ padding: "18px", textAlign: "left" }}>Statut</th>
+            <th style={{ padding: "18px", textAlign: "left" }}>Date</th>
+            <th style={{ padding: "18px", textAlign: "left" }}>Action</th>
           </tr>
         </thead>
 
@@ -118,55 +128,62 @@ export default function RequestsTable() {
             <tr
               key={request.id}
               style={{
-                borderTop: "1px solid #E2E8F0",
+                borderTop: "1px solid #F1F5F9",
               }}
             >
-              <td style={{ padding: "16px" }}>
+              <td style={{ padding: "18px", fontWeight: 600 }}>
                 {request.id}
               </td>
 
-              <td style={{ padding: "16px" }}>
+              <td style={{ padding: "18px" }}>
                 {request.citizen}
               </td>
 
-              <td style={{ padding: "16px" }}>
+              <td style={{ padding: "18px" }}>
                 {request.service}
               </td>
 
-              <td style={{ padding: "16px" }}>
-                <span
-                  style={{
-                    ...getStatusStyle(request.status),
-                    padding: "6px 12px",
-                    borderRadius: "999px",
-                    fontSize: "12px",
-                    fontWeight: 600,
-                  }}
-                >
-                  {request.status}
-                </span>
+              <td style={{ padding: "18px" }}>
+                <StatusBadge status={request.status} />
               </td>
 
-              <td style={{ padding: "16px" }}>
+              <td style={{ padding: "18px" }}>
                 {request.date}
               </td>
 
-              <td style={{ padding: "16px" }}>
-                <Link
-                  to={`/requests/${request.id}`}
+              <td style={{ padding: "18px" }}>
+                <button
                   style={{
-                    color: "#2563EB",
-                    textDecoration: "none",
-                    fontWeight: 600,
+                    width: "38px",
+                    height: "38px",
+                    borderRadius: "12px",
+                    border: "1px solid #E2E8F0",
+                    background: "#FFFFFF",
+                    cursor: "pointer",
                   }}
                 >
-                  Voir
-                </Link>
+                  <Eye size={16} />
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      <div
+        style={{
+          padding: "18px 24px",
+          borderTop: "1px solid #E2E8F0",
+          display: "flex",
+          justifyContent: "space-between",
+          color: "#64748B",
+          fontSize: "14px",
+        }}
+      >
+        <span>Affichage de 1 à 4 sur 1245 demandes</span>
+
+        <span>Page 1 sur 312</span>
+      </div>
     </div>
   );
 }

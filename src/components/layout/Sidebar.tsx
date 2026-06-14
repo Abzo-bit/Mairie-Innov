@@ -2,38 +2,64 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { X } from "lucide-react";
 
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import DescriptionIcon from "@mui/icons-material/Description";
-import ReportIcon from "@mui/icons-material/Report";
-import QrCodeIcon from "@mui/icons-material/QrCode";
-import FolderOpenIcon from "@mui/icons-material/FolderOpen";
-import BarChartIcon from "@mui/icons-material/BarChart";
+import {
+  LayoutDashboard,
+  FileText,
+  AlertTriangle,
+  FolderOpen,
+  BarChart3,
+  Users,
+  UserCog,
+  Building2,
+  Settings,
+} from "lucide-react";
 
 const menuItems = [
   {
     label: "Tableau de bord",
     path: "/",
-    icon: <DashboardIcon />,
+    icon: <LayoutDashboard size={20} />,
   },
   {
     label: "Demandes",
     path: "/requests",
-    icon: <DescriptionIcon />,
+    icon: <FileText size={20} />,
   },
   {
     label: "Réclamations",
     path: "/complaints",
-    icon: <ReportIcon />,
+    icon: <AlertTriangle size={20} />,
+  },
+  {
+    label: "Citoyens",
+    path: "/users",
+    icon: <Users size={20} />,
+  },
+  {
+    label: "Agents",
+    path: "/agents",
+    icon: <UserCog size={20} />,
+  },
+  {
+    label: "Départements",
+    path: "/departments",
+    icon: <Building2 size={20} />,
   },
   {
     label: "Documents",
     path: "/lost-documents",
-    icon: <FolderOpenIcon />,
+    icon: <FolderOpen size={20} />,
   },
   {
+
     label: "Statistiques",
     path: "/analytics",
-    icon: <BarChartIcon />,
+    icon: <BarChart3 size={20} />,
+  },
+  {
+    label: "Paramètres",
+    path: "/settings",
+    icon: <Settings size={20} />,
   },
 ];
 
@@ -95,10 +121,13 @@ export default function Sidebar({ isOpen, onClose }: Props) {
             <X size={20} />
           </button>
         )}
+
       </div>
 
       <div
         style={{
+          flex: 1,
+          marginTop: "32px",
           display: "flex",
           flexDirection: "column",
           gap: "8px",
@@ -114,14 +143,15 @@ export default function Sidebar({ isOpen, onClose }: Props) {
             style={({ isActive }) => ({
               display: "flex",
               alignItems: "center",
-              gap: "12px",
-              padding: "12px 16px",
-              borderRadius: "12px",
+              gap: "14px",
+              padding: "14px 16px",
+              borderRadius: "18px",
               textDecoration: "none",
               color: "#FFFFFF",
               background: isActive ? "#334155" : "transparent",
               fontWeight: isActive ? 600 : 400,
               transition: "0.2s",
+
             })}
           >
             {item.icon}
@@ -129,6 +159,64 @@ export default function Sidebar({ isOpen, onClose }: Props) {
           </NavLink>
         ))}
       </div>
-    </div>
+
+      <div
+        style={{
+          borderTop: "1px solid #1E293B",
+          paddingTop: "20px",
+        }}
+      >
+        <div
+          style={{
+            background: "#1E293B",
+            borderRadius: "20px",
+            padding: "16px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+            }}
+          >
+            <div
+              style={{
+                width: "42px",
+                height: "42px",
+                borderRadius: "14px",
+                background: "#2563EB",
+                color: "#FFFFFF",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 700,
+              }}
+            >
+              AD
+            </div>
+
+            <div>
+              <div
+                style={{
+                  fontWeight: 700,
+                }}
+              >
+                Abzo Dieng
+              </div>
+
+              <div
+                style={{
+                  color: "#94A3B8",
+                  fontSize: "12px",
+                }}
+              >
+                Super Administrateur
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
   );
 }

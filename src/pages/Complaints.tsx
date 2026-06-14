@@ -1,4 +1,12 @@
-import { Link } from "react-router-dom";
+import {
+  AlertTriangle,
+  Clock3,
+  CheckCircle2,
+  MapPin,
+} from "lucide-react";
+
+import PageHeader from "../components/ui/PageHeader";
+import StatCard from "../components/ui/StatCard";
 import ComplaintsMap from "../components/maps/ComplaintsMap";
 
 const complaints = [
@@ -20,108 +28,147 @@ const complaints = [
     id: "REC-003",
     title: "Dépôt sauvage d'ordures",
     location: "Guédiawaye",
-    status: "Traitée",
+    status: "Résolue",
     date: "10/06/2026",
   },
 ];
 
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case "En attente":
-      return "#F59E0B";
-
-    case "En cours":
-      return "#2563EB";
-
-    case "Traitée":
-      return "#16A34A";
-
-    default:
-      return "#64748B";
-  }
-};
-
 export default function Complaints() {
   return (
     <div>
-      <h1
-        style={{
-          marginBottom: "24px",
-        }}
-      >
-        Réclamations citoyennes
-      </h1>
+      <PageHeader
+        title="Réclamations citoyennes"
+        subtitle="Suivi des incidents et demandes d'intervention"
+      />
 
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 2fr",
+          gridTemplateColumns: "repeat(4,1fr)",
           gap: "20px",
+          marginBottom: "24px",
         }}
       >
-        <div
+        <StatCard
+          title="Total réclamations"
+          value="542"
+          trend="+8% ce mois"
+          icon={AlertTriangle}
+        />
+
+        <StatCard
+          title="En attente"
+          value="91"
+          trend="+2% cette semaine"
+          icon={Clock3}
+        />
+
+        <StatCard
+          title="Résolues"
+          value="398"
+          trend="+15% ce mois"
+          icon={CheckCircle2}
+        />
+
+        <StatCard
+          title="Zones critiques"
+          value="12"
+          trend="-4% ce mois"
+          icon={MapPin}
+        />
+      </div>
+
+      <div
+        style={{
+          background: "#FFFFFF",
+          borderRadius: "24px",
+          border: "1px solid #E2E8F0",
+          overflow: "hidden",
+          marginBottom: "24px",
+        }}
+      >
+        <table
           style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "16px",
+            width: "100%",
+            borderCollapse: "collapse",
           }}
         >
-          {complaints.map((complaint) => (
-            <div
-              key={complaint.id}
+          <thead>
+            <tr
               style={{
-                background: "#FFFFFF",
-                border: "1px solid #E2E8F0",
-                borderRadius: "16px",
-                padding: "20px",
+                background: "#F8FAFC",
               }}
             >
-              <h3
+              <th style={{ padding: "18px", textAlign: "left" }}>
+                Référence
+              </th>
+
+              <th style={{ padding: "18px", textAlign: "left" }}>
+                Réclamation
+              </th>
+
+              <th style={{ padding: "18px", textAlign: "left" }}>
+                Localisation
+              </th>
+
+              <th style={{ padding: "18px", textAlign: "left" }}>
+                Statut
+              </th>
+
+              <th style={{ padding: "18px", textAlign: "left" }}>
+                Date
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {complaints.map((complaint) => (
+              <tr
+                key={complaint.id}
                 style={{
-                  marginBottom: "8px",
+                  borderTop: "1px solid #E2E8F0",
                 }}
               >
-                {complaint.title}
-              </h3>
+                <td style={{ padding: "18px" }}>
+                  {complaint.id}
+                </td>
 
-              <p>
-                📍 {complaint.location}
-              </p>
+                <td style={{ padding: "18px" }}>
+                  {complaint.title}
+                </td>
 
-              <p>
-                📅 {complaint.date}
-              </p>
+                <td style={{ padding: "18px" }}>
+                  {complaint.location}
+                </td>
 
-              <span
-                style={{
-                  display: "inline-block",
-                  marginTop: "10px",
-                  padding: "6px 12px",
-                  borderRadius: "999px",
-                  background: getStatusColor(
-                    complaint.status
-                  ),
-                  color: "white",
-                  fontSize: "12px",
-                }}
-              >
-                {complaint.status}
-              </span>
+                <td style={{ padding: "18px" }}>
+                  {complaint.status}
+                </td>
 
-              <div
-                style={{
-                  marginTop: "16px",
-                }}
-              >
-                <Link
-                  to={`/complaints/${complaint.id}`}
-                >
-                  Voir les détails
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+                <td style={{ padding: "18px" }}>
+                  {complaint.date}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div
+        style={{
+          background: "#FFFFFF",
+          borderRadius: "24px",
+          border: "1px solid #E2E8F0",
+          padding: "20px",
+        }}
+      >
+        <h3
+          style={{
+            marginBottom: "16px",
+          }}
+        >
+          Carte des réclamations
+        </h3>
 
         <ComplaintsMap />
       </div>

@@ -1,32 +1,56 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapPin } from "lucide-react";
 
 export default function ComplaintsMap() {
   return (
-    <MapContainer
-      center={[14.7167, -17.4677]}
-      zoom={12}
+    <div
       style={{
         height: "500px",
-        width: "100%",
-        borderRadius: "16px",
+        borderRadius: "20px",
+        background: "#F8FAFC",
+        border: "2px dashed #CBD5E1",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "16px",
       }}
     >
-      <TileLayer
-        attribution='&copy; OpenStreetMap'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+      <div
+        style={{
+          width: "80px",
+          height: "80px",
+          borderRadius: "20px",
+          background: "#DBEAFE",
+          color: "#2563EB",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <MapPin size={40} />
+      </div>
 
-      <Marker position={[14.7167, -17.4677]}>
-        <Popup>
-          Réclamation : Route dégradée
-        </Popup>
-      </Marker>
+      <h3
+        style={{
+          margin: 0,
+          color: "#0F172A",
+        }}
+      >
+        Carte interactive des réclamations
+      </h3>
 
-      <Marker position={[14.735, -17.45]}>
-        <Popup>
-          Réclamation : Éclairage public
-        </Popup>
-      </Marker>
-    </MapContainer>
+      <p
+        style={{
+          margin: 0,
+          color: "#64748B",
+          textAlign: "center",
+          maxWidth: "400px",
+        }}
+      >
+        Localisation des incidents et réclamations
+        citoyennes. L'intégration cartographique sera
+        activée lors de la connexion aux données réelles.
+      </p>
+    </div>
   );
 }
