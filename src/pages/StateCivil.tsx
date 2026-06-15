@@ -1,0 +1,61 @@
+import {
+  FileText,
+  Clock3,
+  CheckCircle2,
+  AlertTriangle,
+} from "lucide-react";
+
+import PageHeader from "../components/ui/PageHeader";
+import StatCard from "../components/ui/StatCard";
+import RequestFilters from "../components/ui/RequestFilters";
+import StateCivilTable from "../components/tables/StateCivilTable";
+
+export default function Requests() {
+  return (
+    <div>
+      <PageHeader
+        title="État Civil"
+        subtitle="Gestion des demandes d état civil"
+      />
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4,1fr)",
+          gap: "20px",
+          marginBottom: "24px",
+        }}
+      >
+        <StatCard
+          title="Total demandes"
+          value="1 245"
+          trend="+12% ce mois"
+          icon={FileText}
+        />
+
+        <StatCard
+          title="En attente"
+          value="321"
+          trend="+4% cette semaine"
+          icon={Clock3}
+        />
+
+        <StatCard
+          title="Validées"
+          value="875"
+          trend="+18% ce mois"
+          icon={CheckCircle2}
+        />
+
+        <StatCard
+          title="Réclamations liées"
+          value="49"
+          trend="-7% cette semaine"
+          icon={AlertTriangle}
+        />
+      </div>
+      <RequestFilters />
+      <StateCivilTable />
+    </div>
+  );
+}
