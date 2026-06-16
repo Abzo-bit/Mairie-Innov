@@ -29,7 +29,6 @@ export default function RequestDetails() {
           <p><strong>Nom :</strong> Mamadou Diop</p>
           <p><strong>NCI :</strong> 1234567890123</p>
           <p><strong>Téléphone :</strong> +221 77 000 00 00</p>
-          <p><strong>Email :</strong> mamadou@email.com</p>
           <p><strong>Adresse :</strong> Dakar Plateau</p>
         </div>
 
@@ -44,7 +43,8 @@ export default function RequestDetails() {
           <h3>Informations de la demande</h3>
 
           <p><strong>Référence :</strong> DEM-001</p>
-          <p><strong>Service :</strong> Acte de naissance</p>
+          <p><strong>Type de demande :</strong> Acte de naissance</p>
+          <p><strong>Service :</strong> État Civil</p>
           <p><strong>Date :</strong> 12/06/2026</p>
           <p><strong>Agent :</strong> Aminata Ndiaye</p>
           <p><strong>Priorité :</strong> Haute</p>

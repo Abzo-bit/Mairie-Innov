@@ -163,8 +163,8 @@ export default function Analytics() {
               padding: "20px",
             }}
           >
-            <h4>🥈 Affaires Sociales</h4>
-            <p>412 dossiers traités</p>
+            <h4>🥈 Projets d'investissement</h4>
+            <p>12 projets suivis</p>
           </div>
 
           <div

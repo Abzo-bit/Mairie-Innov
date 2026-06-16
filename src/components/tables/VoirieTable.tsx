@@ -14,7 +14,7 @@ const requests = [
     id: "VOI-001",
     citizen: "Mamadou Diop",
     document: "Nid de poule",
-    department: "Voirie",
+    service: "Voirie",
     agent: "Ousmane Fall",
     status: "En cours",
     date: "12/06/2026",
@@ -23,7 +23,7 @@ const requests = [
     id: "VOI-002",
     citizen: "Fatou Ndiaye",
     document: "Éclairage public",
-    department: "Voirie",
+    service: "Voirie",
     agent: "Ibrahima Sow",
     status: "Validée",
     date: "11/06/2026",
@@ -32,7 +32,7 @@ const requests = [
     id: "VOI-003",
     citizen: "Cheikh Ndiaye",
     document: "Caniveau bouché",
-    department: "Voirie",
+    service: "Voirie",
     agent: "Mamadou Kane",
     status: "En cours",
     date: "10/06/2026",
@@ -91,8 +91,8 @@ export default function RequestsTable() {
           <tr style={{ background: "#F9FAFB" }}>
             <th style={{ padding: "18px", textAlign: "left" }}>Référence</th>
             <th style={{ padding: "18px", textAlign: "left" }}>Citoyen</th>
-            <th style={{ padding: "18px", textAlign: "left" }}>Document</th>
-            <th style={{ padding: "18px", textAlign: "left" }}>Département</th>
+            <th style={{ padding: "18px", textAlign: "left" }}>Type de demande</th>
+            <th style={{ padding: "18px", textAlign: "left" }}>Service</th>
             <th style={{ padding: "18px", textAlign: "left" }}>Agent</th>
             <th style={{ padding: "18px", textAlign: "left" }}>Statut</th>
             <th style={{ padding: "18px", textAlign: "left" }}>Date</th>
@@ -121,7 +121,7 @@ export default function RequestsTable() {
               </td>
 
               <td style={{ padding: "18px" }}>
-                {request.department}
+                {request.service}
               </td>
 
               <td style={{ padding: "18px" }}>

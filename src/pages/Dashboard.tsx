@@ -130,7 +130,7 @@ export default function Dashboard() {
 
               <div>
                 <strong>Normal</strong>
-                <div>Certificat résidence</div>
+                <div>Acte de décès</div>
                 <small>Fatou Ndiaye</small>
               </div>
             </div>
@@ -205,7 +205,7 @@ export default function Dashboard() {
             </div>
 
             <div>
-              Affaires Sociales - 18%
+              Projets d'investissement - 18%
               <ProgressBar value={18} />
             </div>
 

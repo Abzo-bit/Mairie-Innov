@@ -14,7 +14,7 @@ const requests = [
     id: "DEM-001",
     citizen: "Mamadou Diop",
     document: "Acte de naissance",
-    department: "État Civil",
+    service: "État Civil",
     agent: "Aminata Ndiaye",
     status: "En cours",
     date: "12/06/2026",
@@ -22,8 +22,8 @@ const requests = [
   {
     id: "DEM-002",
     citizen: "Fatou Ndiaye",
-    document: "Certificat de résidence",
-    department: "État Civil",
+    document: "Acte de décès",
+    service: "État Civil",
     agent: "Moussa Diallo",
     status: "Validée",
     date: "11/06/2026",
@@ -32,7 +32,7 @@ const requests = [
     id: "DEM-003",
     citizen: "Ousmane Fall",
     document: "Acte de mariage",
-    department: "État Civil",
+    service: "État Civil",
     agent: "Khadija Sow",
     status: "Rejetée",
     date: "10/06/2026",
@@ -91,8 +91,8 @@ export default function RequestsTable() {
           <tr style={{ background: "#F9FAFB" }}>
             <th style={{ padding: "18px", textAlign: "left" }}>Référence</th>
             <th style={{ padding: "18px", textAlign: "left" }}>Citoyen</th>
-            <th style={{ padding: "18px", textAlign: "left" }}>Document</th>
-            <th style={{ padding: "18px", textAlign: "left" }}>Département</th>
+            <th style={{ padding: "18px", textAlign: "left" }}>Type de demande</th>
+            <th style={{ padding: "18px", textAlign: "left" }}>Service</th>
             <th style={{ padding: "18px", textAlign: "left" }}>Agent</th>
             <th style={{ padding: "18px", textAlign: "left" }}>Statut</th>
             <th style={{ padding: "18px", textAlign: "left" }}>Date</th>
@@ -121,7 +121,7 @@ export default function RequestsTable() {
               </td>
 
               <td style={{ padding: "18px" }}>
-                {request.department}
+                {request.service}
               </td>
 
               <td style={{ padding: "18px" }}>

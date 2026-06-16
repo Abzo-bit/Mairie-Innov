@@ -18,21 +18,21 @@ const users = [
   {
     id: "USR-001",
     nom: "Mamadou Diop",
-    email: "mamadou.diop@mail.sn",
+    nci: "1234567890123",
     telephone: "+221 77 123 45 67",
     statut: "Validée",
   },
   {
     id: "USR-002",
     nom: "Fatou Ndiaye",
-    email: "fatou.ndiaye@mail.sn",
+    nci: "2345678901234",
     telephone: "+221 76 456 78 90",
     statut: "En attente",
   },
   {
     id: "USR-003",
     nom: "Ousmane Fall",
-    email: "ousmane.fall@mail.sn",
+    nci: "3456789012345",
     telephone: "+221 78 111 22 33",
     statut: "Validée",
   },
@@ -105,7 +105,7 @@ export default function Users() {
           <thead>
             <tr style={{ background: "#F9FAFB" }}>
               <th style={{ padding: "18px", textAlign: "left" }}>Citoyen</th>
-              <th style={{ padding: "18px", textAlign: "left" }}>Email</th>
+              <th style={{ padding: "18px", textAlign: "left" }}>NCI</th>
               <th style={{ padding: "18px", textAlign: "left" }}>Téléphone</th>
               <th style={{ padding: "18px", textAlign: "left" }}>Statut</th>
               <th style={{ padding: "18px", textAlign: "left" }}>Actions</th>
@@ -123,7 +123,7 @@ export default function Users() {
                   </span>
                 </td>
 
-                <td style={{ padding: "18px" }}>{user.email}</td>
+                <td style={{ padding: "18px" }}>{user.nci}</td>
 
                 <td style={{ padding: "18px" }}>{user.telephone}</td>
 

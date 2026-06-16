@@ -29,10 +29,10 @@ const services = [
   },
   {
     id: "SER-003",
-    name: "Réclamations",
+    name: "Projets d'investissement",
     responsable: "Cheikh Diop",
-    agents: 10,
-    dossiers: 412,
+    agents: 4,
+    dossiers: 12,
     status: "Actif",
   },
   {
@@ -100,21 +100,21 @@ export default function Services() {
 
         <StatCard
           title="Agents"
-          value="29"
+          value="26"
           trend="+2%"
           icon={Users}
         />
 
         <StatCard
           title="Dossiers"
-          value="1 353"
+          value="1 047"
           trend="+11%"
           icon={FolderOpen}
         />
 
         <StatCard
           title="Services actifs"
-          value="75%"
+          value="100%"
           trend="Stable"
           icon={CheckCircle2}
         />

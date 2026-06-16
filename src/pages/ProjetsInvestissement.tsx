@@ -61,7 +61,7 @@ export default function ProjetsInvestissement() {
 
         <StatCard
           title="Budget global"
-          value="650M"
+          value="650 000 000 FCFA"
           trend="+15%"
           icon={Building2}
         />
@@ -111,6 +111,7 @@ export default function ProjetsInvestissement() {
               <th style={{ padding: "18px", textAlign: "left" }}>Entreprise</th>
               <th style={{ padding: "18px", textAlign: "left" }}>Avancement</th>
               <th style={{ padding: "18px", textAlign: "left" }}>Statut</th>
+              <th style={{ padding: "18px", textAlign: "left" }}>Actions</th>
             </tr>
           </thead>
 
@@ -144,6 +145,19 @@ export default function ProjetsInvestissement() {
 
                 <td style={{ padding: "18px" }}>
                   {projet.statut}
+                </td>
+                <td style={{ padding: "18px" }}>
+                  <button
+                    style={{
+                      border: "1px solid #E5E7EB",
+                      background: "#FFFFFF",
+                      borderRadius: "10px",
+                      padding: "8px 12px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Détails
+                  </button>
                 </td>
               </tr>
             ))}

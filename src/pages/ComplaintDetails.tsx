@@ -28,7 +28,7 @@ export default function ComplaintDetails() {
 
           <p><strong>Nom :</strong> Mamadou Diop</p>
           <p><strong>Téléphone :</strong> +221 77 000 00 00</p>
-          <p><strong>Email :</strong> mamadou@email.com</p>
+          <p><strong>NCI :</strong> 1234567890123</p>
           <p><strong>Adresse :</strong> Dakar Plateau</p>
         </div>
 
