@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Building2,
@@ -11,7 +12,7 @@ import PageHeader from "../components/ui/PageHeader";
 import SearchInput from "../components/ui/SearchInput";
 import StatCard from "../components/ui/StatCard";
 
-const services = [
+const initialServices = [
   {
     id: "SER-001",
     name: "État Civil",
@@ -56,6 +57,30 @@ const services = [
 
 export default function Services() {
   const navigate = useNavigate();
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [services, setServices] = useState(initialServices);
+  const [name, setName] = useState("");
+  const [responsable, setResponsable] = useState("");
+
+  const handleCreateService = () => {
+    if (!name || !responsable) return;
+
+    setServices([
+      ...services,
+      {
+        id: `SER-${String(services.length + 1).padStart(3, "0")}`,
+        name,
+        responsable,
+        agents: 0,
+        dossiers: 0,
+        status: "Actif",
+      },
+    ]);
+
+    setName("");
+    setResponsable("");
+    setShowCreateModal(false);
+  };
   return (
     <div>
       <PageHeader
@@ -70,19 +95,20 @@ export default function Services() {
           marginBottom: "24px",
         }}
       >
-        <button
-          style={{
-            background: "#F97316",
-            color: "#FFFFFF",
-            border: "none",
-            padding: "12px 18px",
-            borderRadius: "14px",
-            cursor: "pointer",
-            fontWeight: 600,
-          }}
-        >
-          + Nouveau service
-        </button>
+          <button
+            onClick={() => setShowCreateModal(true)}
+            style={{
+              background: "#F97316",
+              color: "#FFFFFF",
+              border: "none",
+              padding: "12px 18px",
+              borderRadius: "14px",
+              cursor: "pointer",
+              fontWeight: 600,
+            }}
+          >
+            + Nouveau service
+          </button>
       </div>
 
       <div
@@ -93,19 +119,9 @@ export default function Services() {
           marginBottom: "24px",
         }}
       >
-        <StatCard
-          title="Services"
-          value="5"
-          trend="+1"
-          icon={Building2}
-        />
+        <StatCard title="Services" value="5" trend="+1" icon={Building2} />
 
-        <StatCard
-          title="Agents"
-          value="26"
-          trend="+2%"
-          icon={Users}
-        />
+        <StatCard title="Agents" value="26" trend="+2%" icon={Users} />
 
         <StatCard
           title="Dossiers"
@@ -151,29 +167,19 @@ export default function Services() {
                 background: "#F9FAFB",
               }}
             >
-              <th style={{ padding: "18px", textAlign: "left" }}>
-                Service
-              </th>
+              <th style={{ padding: "18px", textAlign: "left" }}>Service</th>
 
               <th style={{ padding: "18px", textAlign: "left" }}>
                 Responsable
               </th>
 
-              <th style={{ padding: "18px", textAlign: "left" }}>
-                Agents
-              </th>
+              <th style={{ padding: "18px", textAlign: "left" }}>Agents</th>
 
-              <th style={{ padding: "18px", textAlign: "left" }}>
-                Dossiers
-              </th>
+              <th style={{ padding: "18px", textAlign: "left" }}>Dossiers</th>
 
-              <th style={{ padding: "18px", textAlign: "left" }}>
-                Statut
-              </th>
+              <th style={{ padding: "18px", textAlign: "left" }}>Statut</th>
 
-              <th style={{ padding: "18px", textAlign: "left" }}>
-                Actions
-              </th>
+              <th style={{ padding: "18px", textAlign: "left" }}>Actions</th>
             </tr>
           </thead>
 
@@ -186,9 +192,7 @@ export default function Services() {
                 }}
               >
                 <td style={{ padding: "18px" }}>
-                  <div style={{ fontWeight: 600 }}>
-                    {service.name}
-                  </div>
+                  <div style={{ fontWeight: 600 }}>{service.name}</div>
 
                   <div
                     style={{
@@ -200,29 +204,18 @@ export default function Services() {
                   </div>
                 </td>
 
-                <td style={{ padding: "18px" }}>
-                  {service.responsable}
-                </td>
+                <td style={{ padding: "18px" }}>{service.responsable}</td>
 
-                <td style={{ padding: "18px" }}>
-                  {service.agents}
-                </td>
+                <td style={{ padding: "18px" }}>{service.agents}</td>
 
-                <td style={{ padding: "18px" }}>
-                  {service.dossiers}
-                </td>
+                <td style={{ padding: "18px" }}>{service.dossiers}</td>
 
                 <td style={{ padding: "18px" }}>
                   <span
                     style={{
                       background:
-                        service.status === "Actif"
-                          ? "#DCFCE7"
-                          : "#FEE2E2",
-                      color:
-                        service.status === "Actif"
-                          ? "#15803D"
-                          : "#DC2626",
+                        service.status === "Actif" ? "#DCFCE7" : "#FEE2E2",
+                      color: service.status === "Actif" ? "#15803D" : "#DC2626",
                       padding: "6px 12px",
                       borderRadius: "999px",
                       fontSize: "12px",
@@ -240,7 +233,8 @@ export default function Services() {
                       gap: "10px",
                     }}
                   >
-                    <button onClick={() => navigate(`/admin/services/${service.id}`)}
+                    <button
+                      onClick={() => navigate(`/admin/services/${service.id}`)}
                       style={{
                         border: "none",
                         background: "#FFF7ED",
@@ -275,6 +269,100 @@ export default function Services() {
             ))}
           </tbody>
         </table>
+        {showCreateModal && (
+          <div
+            style={{
+              position: "fixed",
+              inset: 0,
+              background: "rgba(0,0,0,0.4)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: 9999,
+            }}
+          >
+            <div
+              style={{
+                background: "#FFFFFF",
+                padding: "24px",
+                borderRadius: "16px",
+                width: "500px",
+              }}
+            >
+              <h2
+                style={{
+                  marginTop: 0,
+                  marginBottom: "20px",
+                }}
+              >
+                Nouveau service
+              </h2>
+
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Nom du service"
+                style={{
+                  width: "100%",
+                  padding: "12px",
+                  marginBottom: "12px",
+                  border: "1px solid #E5E7EB",
+                  borderRadius: "8px",
+                  boxSizing: "border-box",
+                }}
+              />
+
+              <input
+                value={responsable}
+                onChange={(e) => setResponsable(e.target.value)}
+                placeholder="Responsable"
+                style={{
+                  width: "100%",
+                  padding: "12px",
+                  marginBottom: "20px",
+                  border: "1px solid #E5E7EB",
+                  borderRadius: "8px",
+                  boxSizing: "border-box",
+                }}
+              />
+
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  gap: "12px",
+                }}
+              >
+                <button
+                  onClick={() => setShowCreateModal(false)}
+                  style={{
+                    padding: "10px 16px",
+                    border: "1px solid #E5E7EB",
+                    background: "#FFFFFF",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Annuler
+                </button>
+
+                <button
+                  onClick={handleCreateService}
+                  style={{
+                    background: "#F97316",
+                    color: "#FFFFFF",
+                    border: "none",
+                    padding: "10px 16px",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Créer
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
