@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   Briefcase,
   Building2,
@@ -37,6 +38,7 @@ const projets = [
 ];
 
 export default function ProjetsInvestissement() {
+  const navigate = useNavigate();
   return (
     <div>
       <PageHeader
@@ -147,7 +149,7 @@ export default function ProjetsInvestissement() {
                   {projet.statut}
                 </td>
                 <td style={{ padding: "18px" }}>
-                  <button
+                  <button onClick={() => navigate(`/admin/projects/${projet.id}`)}
                     style={{
                       border: "1px solid #E5E7EB",
                       background: "#FFFFFF",

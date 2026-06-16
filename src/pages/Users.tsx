@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   Download,
   Eye,
@@ -39,6 +40,7 @@ const users = [
 ];
 
 export default function Users() {
+  const navigate = useNavigate();
   return (
     <div>
       <PageHeader
@@ -71,7 +73,7 @@ export default function Users() {
           <SearchInput placeholder="Rechercher un citoyen..." />
         </div>
 
-        <button
+        <button 
           style={{
             padding: "12px 18px",
             borderRadius: "14px",
@@ -138,7 +140,7 @@ export default function Users() {
                       gap: "8px",
                     }}
                   >
-                    <button
+                    <button onClick={() => navigate(`/admin/users/${user.id}`)}
                       style={{
                         border: "1px solid #E5E7EB",
                         background: "#FFFFFF",
@@ -150,7 +152,7 @@ export default function Users() {
                       <Eye size={16} />
                     </button>
 
-                    <button
+                    <button onClick={() => navigate(`/admin/users/${user.id}`)}
                       style={{
                         border: "none",
                         background: "#FFF7ED",
@@ -163,7 +165,7 @@ export default function Users() {
                       <Lock size={16} />
                     </button>
 
-                    <button
+                    <button onClick={() => navigate(`/admin/users/${user.id}`)}
                       style={{
                         border: "none",
                         background: "#F3F4F6",

@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PageHeader from "../components/ui/PageHeader";
 import SearchInput from "../components/ui/SearchInput";
 import StatCard from "../components/ui/StatCard";
@@ -9,7 +11,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-const agents = [
+const initialAgents = [
   {
     id: "AGT-001",
     nom: "Aminata Ndiaye",
@@ -29,7 +31,7 @@ const agents = [
   {
     id: "AGT-003",
     nom: "Khadija Sow",
-    service: "Affaires Sociales",
+    service: "Projets d'investissement",
     dossiers: 121,
     performance: 96,
     statut: "Actif",
@@ -37,6 +39,37 @@ const agents = [
 ];
 
 export default function Agents() {
+  const navigate = useNavigate();
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [agents, setAgents] = useState(initialAgents);
+
+  const [nom, setNom] = useState("");
+  const [email, setEmail] = useState("");
+  const [telephone, setTelephone] = useState("");
+  const [service, setService] = useState("");
+
+  const handleCreateAgent = () => {
+    if (!nom || !service) return;
+
+    setAgents([
+      ...agents,
+      {
+        id: `AGT-${String(agents.length + 1).padStart(3, "0")}`,
+        nom,
+        service,
+        dossiers: 0,
+        performance: 0,
+        statut: "Actif",
+      },
+    ]);
+
+    setNom("");
+    setEmail("");
+    setTelephone("");
+    setService("");
+
+    setShowCreateModal(false);
+  };
   return (
     <div>
       <PageHeader
@@ -52,6 +85,7 @@ export default function Agents() {
         }}
       >
         <button
+          onClick={() => setShowCreateModal(true)}
           style={{
             background: "#F97316",
             color: "#FFFFFF",
@@ -76,8 +110,18 @@ export default function Agents() {
       >
         <StatCard title="Agents" value="38" trend="+2%" icon={Users} />
         <StatCard title="Services" value="12" trend="+1" icon={Briefcase} />
-        <StatCard title="Dossiers" value="2 845" trend="+14%" icon={CheckCircle2} />
-        <StatCard title="Performance" value="94%" trend="+3%" icon={TrendingUp} />
+        <StatCard
+          title="Dossiers"
+          value="2 845"
+          trend="+14%"
+          icon={CheckCircle2}
+        />
+        <StatCard
+          title="Performance"
+          value="94%"
+          trend="+3%"
+          icon={TrendingUp}
+        />
       </div>
 
       <div
@@ -108,7 +152,9 @@ export default function Agents() {
               <th style={{ padding: "18px", textAlign: "left" }}>Agent</th>
               <th style={{ padding: "18px", textAlign: "left" }}>Service</th>
               <th style={{ padding: "18px", textAlign: "left" }}>Dossiers</th>
-              <th style={{ padding: "18px", textAlign: "left" }}>Performance</th>
+              <th style={{ padding: "18px", textAlign: "left" }}>
+                Performance
+              </th>
               <th style={{ padding: "18px", textAlign: "left" }}>Statut</th>
               <th style={{ padding: "18px", textAlign: "left" }}>Actions</th>
             </tr>
@@ -139,9 +185,7 @@ export default function Agents() {
 
                 <td style={{ padding: "18px" }}>{agent.dossiers}</td>
 
-                <td style={{ padding: "18px" }}>
-                  {agent.performance}%
-                </td>
+                <td style={{ padding: "18px" }}>{agent.performance}%</td>
 
                 <td style={{ padding: "18px" }}>
                   <span
@@ -166,6 +210,7 @@ export default function Agents() {
                     }}
                   >
                     <button
+                      onClick={() => navigate(`/admin/agents/${agent.id}`)}
                       style={{
                         background: "#FFF7ED",
                         color: "#F97316",
@@ -179,6 +224,7 @@ export default function Agents() {
                     </button>
 
                     <button
+                onClick={handleCreateAgent}
                       style={{
                         background: "#DBEAFE",
                         color: "#1D4ED8",
@@ -192,6 +238,7 @@ export default function Agents() {
                     </button>
 
                     <button
+                onClick={handleCreateAgent}
                       style={{
                         background: "#F3F4F6",
                         color: "#374151",
@@ -210,6 +257,132 @@ export default function Agents() {
           </tbody>
         </table>
       </div>
+
+      {showCreateModal && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.4)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 999,
+          }}
+        >
+          <div
+            style={{
+              width: "500px",
+              background: "#FFFFFF",
+              borderRadius: "16px",
+              padding: "24px",
+              boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+            }}
+          >
+            <h2
+              style={{
+                marginTop: 0,
+                marginBottom: "20px",
+              }}
+            >
+              Nouvel agent
+            </h2>
+
+            <input
+              value={nom}
+              onChange={(e) => setNom(e.target.value)}
+              placeholder="Nom complet"
+              style={{
+                width: "100%",
+                padding: "12px",
+                marginBottom: "12px",
+                border: "1px solid #E5E7EB",
+                borderRadius: "8px",
+                boxSizing: "border-box",
+              }}
+            />
+
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              style={{
+                width: "100%",
+                padding: "12px",
+                marginBottom: "12px",
+                border: "1px solid #E5E7EB",
+                borderRadius: "8px",
+                boxSizing: "border-box",
+              }}
+            />
+
+              <input
+                value={telephone}
+                onChange={(e) => setTelephone(e.target.value)}
+                placeholder="Téléphone"
+                style={{
+                  width: "100%",
+                  padding: "12px",
+                  marginBottom: "12px",
+                  border: "1px solid #E5E7EB",
+                  borderRadius: "8px",
+                  boxSizing: "border-box",
+                }}
+              />
+
+
+
+            <input
+              value={service}
+              onChange={(e) => setService(e.target.value)}
+              placeholder="Service"
+              style={{
+                width: "100%",
+                padding: "12px",
+                marginBottom: "20px",
+                border: "1px solid #E5E7EB",
+                borderRadius: "8px",
+                boxSizing: "border-box",
+              }}
+            />
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: "12px",
+              }}
+            >
+              <button
+                onClick={() => setShowCreateModal(false)}
+                style={{
+                  padding: "10px 16px",
+                  border: "1px solid #E5E7EB",
+                  background: "#FFFFFF",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                }}
+              >
+                Annuler
+              </button>
+
+              <button
+                onClick={handleCreateAgent}
+                style={{
+                  background: "#F97316",
+                  color: "#FFFFFF",
+                  border: "none",
+                  padding: "10px 16px",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                }}
+              >
+                Créer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

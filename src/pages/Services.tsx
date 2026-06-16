@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   Building2,
   Users,
@@ -54,6 +55,7 @@ const services = [
 ];
 
 export default function Services() {
+  const navigate = useNavigate();
   return (
     <div>
       <PageHeader
@@ -238,7 +240,7 @@ export default function Services() {
                       gap: "10px",
                     }}
                   >
-                    <button
+                    <button onClick={() => navigate(`/admin/services/${service.id}`)}
                       style={{
                         border: "none",
                         background: "#FFF7ED",
