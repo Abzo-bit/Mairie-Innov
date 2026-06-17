@@ -62,8 +62,9 @@ export default function Services() {
   const [name, setName] = useState("");
   const [responsable, setResponsable] = useState("");
 
-  const handleCreateService = () => {
-    if (!name || !responsable) return;
+
+    const handleCreateService = () => {
+  if (!name || !responsable) return;
 
     setServices([
       ...services,
@@ -81,6 +82,16 @@ export default function Services() {
     setResponsable("");
     setShowCreateModal(false);
   };
+  const handleDisableService = (id: string) => {
+    setServices(
+      services.map((service) =>
+        service.id === id
+          ? { ...service, status: "Inactif" }
+          : service
+      )
+    );
+  };
+
   return (
     <div>
       <PageHeader
@@ -252,6 +263,7 @@ export default function Services() {
                     </button>
 
                     <button
+                        onClick={() => handleDisableService(service.id)}
                       style={{
                         border: "none",
                         background: "#F3F4F6",

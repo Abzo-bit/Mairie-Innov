@@ -1,7 +1,9 @@
+import { useState } from "react";
 import PageHeader from "../components/ui/PageHeader";
 import StatusBadge from "../components/ui/StatusBadge";
 
 export default function RequestDetails() {
+  const [status] = useState("En cours");
   return (
     <div>
       <PageHeader
@@ -49,7 +51,7 @@ export default function RequestDetails() {
           <p><strong>Agent :</strong> Aminata Ndiaye</p>
           <p><strong>Priorité :</strong> Haute</p>
 
-          <StatusBadge status="En cours" />
+          <StatusBadge status={status} />
         </div>
       </div>
 
@@ -62,6 +64,7 @@ export default function RequestDetails() {
           padding: "24px",
         }}
       >
+
         <h3>Historique du traitement</h3>
 
         <ul>
@@ -99,61 +102,6 @@ export default function RequestDetails() {
           gap: "12px",
         }}
       >
-        <button
-          style={{
-            background: "#334155",
-            color: "#FFF",
-            border: "none",
-            borderRadius: "10px",
-            padding: "10px 18px",
-            fontWeight: 600,
-            cursor: "pointer",
-          }}
-        >
-          Assigner
-        </button>
-
-        <button
-          style={{
-            background: "#F97316",
-            color: "#FFF",
-            border: "none",
-            borderRadius: "10px",
-            padding: "10px 18px",
-            fontWeight: 600,
-            cursor: "pointer",
-          }}
-        >
-          Mettre en cours
-        </button>
-
-        <button
-          style={{
-            background: "#16A34A",
-            color: "#FFF",
-            border: "none",
-            borderRadius: "10px",
-            padding: "10px 18px",
-            fontWeight: 600,
-            cursor: "pointer",
-          }}
-        >
-          Valider
-        </button>
-
-        <button
-          style={{
-            background: "#DC2626",
-            color: "#FFF",
-            border: "none",
-            borderRadius: "10px",
-            padding: "10px 18px",
-            fontWeight: 600,
-            cursor: "pointer",
-          }}
-        >
-          Rejeter
-        </button>
       </div>
     </div>
   );

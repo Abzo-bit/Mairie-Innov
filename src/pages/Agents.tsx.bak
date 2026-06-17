@@ -47,9 +47,6 @@ export default function Agents() {
   const [email, setEmail] = useState("");
   const [telephone, setTelephone] = useState("");
   const [service, setService] = useState("");
-  const [showPermissionsModal, setShowPermissionsModal] = useState(false);
-  const [selectedAgent, setSelectedAgent] = useState<any>(null);
-
 
   const handleCreateAgent = () => {
     if (!nom || !service) return;
@@ -92,7 +89,6 @@ export default function Agents() {
 
       <div
         style={{
-
           display: "flex",
           justifyContent: "flex-end",
           marginBottom: "20px",
@@ -204,14 +200,8 @@ export default function Agents() {
                 <td style={{ padding: "18px" }}>
                   <span
                     style={{
-                      background:
-                        agent.statut === "Actif"
-                          ? "#DCFCE7"
-                          : "#FEE2E2",
-                      color:
-                        agent.statut === "Actif"
-                          ? "#166534"
-                          : "#991B1B",
+                      background: "#FFF7ED",
+                      color: "#F97316",
                       padding: "6px 12px",
                       borderRadius: "999px",
                       fontSize: "12px",
@@ -244,10 +234,6 @@ export default function Agents() {
                     </button>
 
                     <button
-                        onClick={() => {
-                          setSelectedAgent(agent);
-                          setShowPermissionsModal(true);
-                        }}
                       style={{
                         background: "#DBEAFE",
                         color: "#1D4ED8",
@@ -404,11 +390,6 @@ export default function Agents() {
               </button>
             </div>
           </div>
-        </div>
-      )}
-      {showPermissionsModal && selectedAgent && (
-        <div style={{padding:"12px",background:"#DBEAFE",borderRadius:"8px",marginTop:"12px"}}>
-          Permissions de {selectedAgent.nom}
         </div>
       )}
     </div>

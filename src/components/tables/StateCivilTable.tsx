@@ -5,6 +5,7 @@ import {
   CheckCircle2,
   XCircle,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import SearchInput from "../ui/SearchInput";
 import StatusBadge from "../ui/StatusBadge";
@@ -39,6 +40,7 @@ const requests = [
   },
 ];
 export default function RequestsTable() {
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -144,6 +146,7 @@ export default function RequestsTable() {
                   }}
                 >
                   <button
+                    onClick={() => navigate(`/admin/requests/${request.id}`)}
                     style={{
                       border: "1px solid #E5E7EB",
                       background: "#FFFFFF",
